@@ -2,8 +2,8 @@
 <plugin id="com.redapesolutions.syncnow" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
   <name>sync-now</name>
   <DESCRIPTION>Sync Now Cordova Plugin</DESCRIPTION>
-  <js-module name="sync-now" src="www/sync-now.js">
-    <clobbers target="cordova.plugins.sync-now"/>
+  <js-module name="SyncNow" src="www/sync-now.js">
+    <clobbers target="cordova.plugins.SyncNow"/>
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
@@ -12,17 +12,18 @@
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/sync-now.java" target-dir="src/com/redapesolutions/syncnow"/>
-
+    <config-file parent="/manifest" target="AndroidManifest.xml">
+      <!-- to listen/record audio -->
+      <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    </config-file>
+    <source-file src="src/android/SyncNow.java" target-dir="src/com/redapesolutions/syncnow"/>
     <!-- Jar files -->
     <source-file src="src/android/lib/com.civolution.syncnow.jar" target-dir="libs"/>
-    <source-file src="src/android/lib/x86/libSyncNow.so" target-dir="libs"/>
-    <source-file src="src/android/lib/x86/libSyncNowJNI.so" target-dir="libs"/>
-
-    <source-file src="src/android/lib/armeabi/libSyncNow.so" target-dir="libs"/>
-    <source-file src="src/android/lib/armeabi/libSyncNowJNI.so" target-dir="libs"/>
-
-    <source-file src="src/android/lib/armeabi-v7a/libSyncNow.so" target-dir="libs"/>
-    <source-file src="src/android/lib/armeabi-v7a/libSyncNowJNI.so" target-dir="libs"/>
+    <source-file src="src/android/lib/x86/libSyncNow.so" target-dir="libs/x86"/>
+    <source-file src="src/android/lib/x86/libSyncNowJNI.so" target-dir="libs/x86"/>
+    <source-file src="src/android/lib/armeabi/libSyncNow.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/lib/armeabi/libSyncNowJNI.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/lib/armeabi-v7a/libSyncNow.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/lib/armeabi-v7a/libSyncNowJNI.so" target-dir="libs/armeabi-v7a"/>
   </platform>
 </plugin>
