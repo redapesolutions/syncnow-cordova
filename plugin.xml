@@ -7,12 +7,12 @@
   </js-module>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="sync-now">
-        <param name="android-package" value="com.redapesolutions.syncnow.sync-now"/>
+      <feature name="SyncNow">
+        <param name="android-package" value="com.redapesolutions.syncnow"/>
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
-    <source-file src="src/android/sync-now.java" target-dir="src/com/redapesolutions/syncnow/sync-now"/>
+    <source-file src="src/android/sync-now.java" target-dir="src/com/redapesolutions/syncnow"/>
 
     <!-- Jar files -->
     <source-file src="src/android/lib/com.civolution.syncnow.jar" target-dir="libs"/>
