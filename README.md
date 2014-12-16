@@ -1,29 +1,7 @@
-# README #
+# Sync Now Cordova Plugin #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+## Example
+```
+cordova plugin add ..\..\sync-now --variable LICENSE=YADMOZnn0TXuNx9n4CSkQjznrquBYuCL0vC21x5WKAKrGsl4jMVqCVXpDSdN4CvVODuIG7CoFod0j7ZC/NXjUaKtz8FiKjFKqC/vKfOt3nniGMOMMnFpYNAkJG3
+Q3nEBX8dBAE1DNENGUUQxc04rczZEeE1BMkM3UmdWQ1JYQk1HbHIrQlFJVkFMY25ZcVJHWEd3eGZDMmdOU3BXbDYwZVYxMk4A --variable IDENTIFIERBITS=4 --variable MNUMTIMESTAMPBITS=8 --variable MTIMESTAMPLOOP=true
+```
