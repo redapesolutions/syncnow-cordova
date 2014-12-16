@@ -58,11 +58,14 @@ public class SyncNow extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
 		if (action.equals(SyncNowActions.RECORD.toString())) {
+			syncNow.setCallback(callbackContext); // set callback
 			syncNow.startDetector(this.cordova.getActivity());
 			return true;
 		} else if (action.equals(SyncNowActions.INIT.toString())) {
-			syncNow.setCallback(callbackContext);
 			callbackContext.success(new JSONArray(SyncNowActions.names()));
+			return true;
+		} else if (action.equals(SyncNowActions.STOP_RECORD.toString())) {
+			syncNow.stopDetector();
 			return true;
 		}
 		return false;

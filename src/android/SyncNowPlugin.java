@@ -1,6 +1,7 @@
 package com.redapesolutions.syncnow;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
 import android.content.Context;
 import android.util.Log;
@@ -69,9 +70,13 @@ public class SyncNowPlugin implements AwmSyncDetectorListener {
 		licenseRetCode = mDetector.setLicense(_license);
 
 		status = configureDetectionOptions(licenseRetCode);
-		
-		if (!status)
+
+		if (!status) {
+			// if detector configuration fails, reset detector to null value
+			// TODO: check documentation whether is this needed
+			mDetector = null;
 			return status;
+		}
 
 		// start the worker thread to capture the audio input
 		mAudioThread = new AudioCapture(mDetector, this);
@@ -79,6 +84,21 @@ public class SyncNowPlugin implements AwmSyncDetectorListener {
 		mAudioThread.start();
 
 		return status;
+	}
+
+	public synchronized void stopDetector() {
+		if (mAudioThread != null) {
+			mAudioThread.interrupt();
+			if ((null != mAudioThread) && (mAudioThread.isAlive())) {
+				try {
+					mAudioThread.join();
+				} catch (InterruptedException e) {
+					Log.e(LOG_TAG, e.getMessage());
+					e.printStackTrace();
+				}
+			}
+			mAudioThread = null;
+		}
 	}
 
 	/**
@@ -128,26 +148,31 @@ public class SyncNowPlugin implements AwmSyncDetectorListener {
 		}
 		return result;
 	}
+	
+	private synchronized PluginResult setPluginResult(String message) {
+		PluginResult result = new PluginResult(PluginResult.Status.OK, message);
+		result.setKeepCallback(true);
+		return result;
+	}
 
 	@Override
 	public void onAlarm(AlarmEvent arg0) {
 		// TODO Auto-generated method stub
 		Log.i(LOG_TAG, "onAlarm=" + arg0.message);
-
+		_callback.sendPluginResult(setPluginResult("onalarm:" + arg0.message));
 	}
 
 	@Override
 	public void onDebug(String arg0) {
 		// TODO Auto-generated method stub
 		Log.i(LOG_TAG, "onDebug=" + arg0);
-
 	}
 
 	@Override
 	public void onPayload(PayloadEvent arg0) {
 		// TODO Auto-generated method stub
 		Log.i(LOG_TAG, "onPayload=" + arg0.toString());
-
+		_callback.sendPluginResult(setPluginResult(Long.toString(arg0.contentID)));
 	}
 
 }
