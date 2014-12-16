@@ -1,10 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com.redapesolutions.syncnow" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
   <name>sync-now</name>
-  <DESCRIPTION>Sync Now Cordova Plugin</DESCRIPTION>
+  <description>Sync Now Cordova Plugin</description>
   <js-module name="SyncNow" src="www/sync-now.js">
     <clobbers target="cordova.plugins.SyncNow"/>
   </js-module>
+  <!-- Required Params -->
+  <preference name="license"/>
+  <preference name="identifierBits"/>
+  <preference name="mNumTimeStampBits"/>
+  <preference name="mTimeStampLoop"/>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="SyncNow">
@@ -12,11 +17,20 @@
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"/>
+    <config-file parent="/*" target="res/values/syncnow.xml">
+      <string name="license">$license</string>
+      <string name="identifierBits">$identifierBits</string>
+      <string name="mNumTimeStampBits">$mNumTimeStampBits</string>
+      <string name="mTimeStampLoop">$mTimeStampLoop</string>
+    </config-file>
     <config-file parent="/manifest" target="AndroidManifest.xml">
       <!-- to listen/record audio -->
-      <uses-permission android:name="android.permission.RECORD_AUDIO" />
+      <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     </config-file>
     <source-file src="src/android/SyncNow.java" target-dir="src/com/redapesolutions/syncnow"/>
+    <source-file src="src/android/SyncNowActions.java" target-dir="src/com/redapesolutions/syncnow"/>
+    <source-file src="src/android/SyncNowPlugin.java" target-dir="src/com/redapesolutions/syncnow"/>
+    <source-file src="src/android/AudioCapture.java" target-dir="src/com/redapesolutions/syncnow"/>
     <!-- Jar files -->
     <source-file src="src/android/lib/com.civolution.syncnow.jar" target-dir="libs"/>
     <source-file src="src/android/lib/x86/libSyncNow.so" target-dir="libs/x86"/>
