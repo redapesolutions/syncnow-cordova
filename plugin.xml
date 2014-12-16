@@ -6,22 +6,25 @@
     <clobbers target="cordova.plugins.SyncNow"/>
   </js-module>
   <!-- Required Params -->
-  <preference name="license"/>
-  <preference name="identifierBits"/>
-  <preference name="mNumTimeStampBits"/>
-  <preference name="mTimeStampLoop"/>
+  <preference name="LICENSE"/>
+  <preference name="IDENTIFIERBITS"/>
+  <preference name="MNUMTIMESTAMPBITS"/>
+  <preference name="MTIMESTAMPLOOP"/>
+  <engines>
+    <engine name="cordova" version="&gt;=3.0.0"/>
+  </engines>
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="SyncNow">
-        <param name="android-package" value="com.redapesolutions.syncnow"/>
+        <param name="android-package" value="com.redapesolutions.syncnow.SyncNow"/>
       </feature>
     </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"/>
+    <source-file src="src/android/res/syncnow.xml" target-dir="res/values"/>
     <config-file parent="/*" target="res/values/syncnow.xml">
-      <string name="license">$license</string>
-      <string name="identifierBits">$identifierBits</string>
-      <string name="mNumTimeStampBits">$mNumTimeStampBits</string>
-      <string name="mTimeStampLoop">$mTimeStampLoop</string>
+      <string name="license">$LICENSE</string>
+      <string name="identifierBits">$IDENTIFIERBITS</string>
+      <string name="mNumTimeStampBits">$MNUMTIMESTAMPBITS</string>
+      <string name="mTimeStampLoop">$MTIMESTAMPLOOP</string>
     </config-file>
     <config-file parent="/manifest" target="AndroidManifest.xml">
       <!-- to listen/record audio -->
