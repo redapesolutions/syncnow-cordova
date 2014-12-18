@@ -1,7 +1,4 @@
-syncnow-cordova
-===============
-
-Cordova SyncNow Library
+# Sync Now Cordova Plugin #
 
 ## Example
 ```
